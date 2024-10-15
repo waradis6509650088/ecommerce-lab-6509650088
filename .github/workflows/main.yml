@@ -1,0 +1,14 @@
+name: automated test
+run-name: AT
+on: push
+jobs:
+  math_test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "testing math.js"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+            node-version: "22"
+      - run: npm ci
+      - run: npm test
