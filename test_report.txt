@@ -1,15 +1,15 @@
 PASS __test__/products.test.js
   GET
     ✓ /products => should return all products (22 ms)
-    ✓ /products/:id => should return a product by ID (3 ms)
+    ✓ /products/:id => should return a product by ID (4 ms)
     ✓ /products/:id => should return rescode 404 if not found (2 ms)
   POST
-    ✓ /products => should add a new products (8 ms)
+    ✓ /products => should add a new products (9 ms)
   PUT
     ✓ products/:id => should update an existing product (5 ms)
     ✓ should return 404 if product not found (1 ms)
   DELETE
-    ✓ should delete a product (4 ms)
+    ✓ should delete a product (5 ms)
     ✓ should return 404 if product not found (2 ms)
 
 ----------|---------|----------|---------|---------|-------------------
