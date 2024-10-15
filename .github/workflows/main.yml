@@ -2,10 +2,10 @@ name: automated test
 run-name: AT
 on: push
 jobs:
-  math_test:
+  app_test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "testing math.js"
+      - run: echo "testing app.js"
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
