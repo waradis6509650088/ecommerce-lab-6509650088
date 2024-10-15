@@ -64,6 +64,7 @@ describe('PUT', () => {
         expect(json.price).toBe(1);
         expect(json.stock).toBe(12);
 
+        //put request with no change
         const res2 = await request(app)
             .put('/products/1')
             .send({})
