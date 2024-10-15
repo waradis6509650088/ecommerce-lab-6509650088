@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --silent=false"
+    "test": "jest --coverage; jest --coverage --no-color > './test_report.txt' 2>&1"
   },
   "keywords": [],
   "author": "",
