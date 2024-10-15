@@ -36,6 +36,7 @@ describe('POST', () => {
             .send(postInfo)
             .set('ContentType','application/json');
         const json = res.body;
+
         expect(res.statusCode).toBe(201);
         expect(Object.keys(json).length).toBe(4);
         expect(json).toHaveProperty('id','name','price','stock');
@@ -43,11 +44,55 @@ describe('POST', () => {
     });
 });
 describe('PUT', () => {
-    it('products/:id => should update an existing product', async () => {
 
+    const putInfo = {
+        name: 'new name',
+        price: 1,
+        stock: 12
+    }
+
+    it('products/:id => should update an existing product', async () => {
+        const res = await request(app)
+            .put('/products/1')
+            .send(putInfo)
+            .set('ContentType','application/json');
+        const json = res.body;
+
+        expect(res.statusCode).toBe(200);
+        expect(json).toHaveProperty('id','name','price','stock');
+        expect(json.name).toBe('new name');
+        expect(json.price).toBe(1);
+        expect(json.stock).toBe(12);
+
+        const res2 = await request(app)
+            .put('/products/1')
+            .send({})
+            .set('ContentType','application/json');
+        expect(res.statusCode).toBe(200);
+        expect(json).toHaveProperty('id','name','price','stock');
+        expect(json.name).toBe('new name');
+        expect(json.price).toBe(1);
+        expect(json.stock).toBe(12);
     });
     it('should return 404 if product not found', async () => {
+        const res = await request(app).put('/products/999');
+        expect(res.statusCode).toBe(404);
+    });
+});
+describe('DELETE', () => {
+    it('should delete a product', async () => {
+        const res1 = await request(app).delete('/products/1');
+        expect(res1.statusCode).toBe(200);
+        expect(res1.body).toHaveProperty('message');
 
+        const res2 = await request(app).delete('/products/2');
+        expect(res2.statusCode).toBe(200);
+        expect(res2.body).toHaveProperty('message');
+    });
+    it('should return 404 if product not found', async () => {
+        const res = await request(app).delete('/products/300');
+        expect(res.statusCode).toBe(404);
+        expect(res.body).toHaveProperty('message');
     });
 });
 
